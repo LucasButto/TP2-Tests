@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 
 export const mayorEdad = (age) => {
   if (age >= 18) {
-    return "Eres mayor de edad";
+    return true;
   } else if (age >= 0 && age < 18) {
-    return "Eres menor de edad";
+    return false;
   } else {
-    return "No es una edad válida";
+    return null;
   }
 };
 
@@ -18,7 +18,13 @@ const Edad = () => {
 
   const submitFunction = (age) => {
     let intAge = parseInt(age.edad);
-    setResult(mayorEdad(intAge));
+    setResult(
+      mayorEdad(intAge) === true
+        ? "Mayor de edad"
+        : mayorEdad(intAge) === false
+        ? "Menor de edad"
+        : "Ingrese un numero valido"
+    );
   };
   return (
     <>
